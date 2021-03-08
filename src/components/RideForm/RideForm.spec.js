@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import RideForm from './RideForm'
 
 describe('RideForm', () => {
   it('renders a form with three label-input combinations and a button', () => {
