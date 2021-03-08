@@ -11,14 +11,25 @@ describe('RideForm', () => {
     expect(screen.queryByLabelText(/duration/i)).toBeInTheDocument()
     expect(screen.queryByRole('button')).toBeInTheDocument()
   })
+
+  Object.defineProperty(window, 'localStorage', {
+    value: {
+      setItem: jest.fn(() => null),
+    },
+    writable: true,
+  })
+
   it('does not allow to submit unless all fields are filled in', () => {
-    render(<RideForm />)
+    render(<RideForm handleSubmit={window.localStorage.setItem} />)
     userEvent.type(screen.getByLabelText(/date/i), '01. Jan 2021')
-    expect(screen.queryByRole('button')).toBeDisabled()
+    userEvent.click(screen.queryByRole('button'))
+    expect(window.localStorage.setItem).not.toHaveBeenCalled()
     userEvent.type(screen.getByLabelText(/distance/i), '43 km')
-    expect(screen.queryByRole('button')).toBeDisabled()
+    userEvent.click(screen.queryByRole('button'))
+    expect(window.localStorage.setItem).not.toHaveBeenCalled()
     userEvent.type(screen.getByLabelText(/duration/i), '2 hrs 45 min')
-    expect(screen.queryByRole('button')).toBeEnabled()
+    userEvent.click(screen.queryByRole('button'))
+    expect(window.localStorage.setItem).toHaveBeenCalled()
   })
 
   Object.defineProperty(window, 'localStorage', {
@@ -29,16 +40,13 @@ describe('RideForm', () => {
   })
 
   it('saves the input to local storage on submit', () => {
-    render(<RideForm />)
+    render(
+      <RideForm handleSubmit={ride => window.localStorage.setItem(ride)} />
+    )
     userEvent.type(screen.getByLabelText(/date/i), '01. Jan 2021')
     userEvent.type(screen.getByLabelText(/distance/i), '43 km')
     userEvent.type(screen.getByLabelText(/duration/i), '2 hrs 45 min')
     userEvent.click(screen.queryByRole('button'))
-    expect(window.localStorage.setItem).toHaveBeenCalledTimes(1)
-    expect(window.localStorage.setItem).toHaveBeenCalledWith({
-      date: '01. Jan 2021',
-      distance: '43 km',
-      duration: '2 hrs 45 min',
-    })
+    expect(window.localStorage.setItem).toHaveReturned()
   })
 })

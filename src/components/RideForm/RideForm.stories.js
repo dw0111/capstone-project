@@ -1,5 +1,4 @@
 import React from 'react'
-
 import RideForm from './RideForm'
 
 // eslint-disable-next-line import/no-anonymous-default-export

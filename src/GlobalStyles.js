@@ -17,6 +17,7 @@ body {
   margin: 0;
   font-size: 112.5%;
   font-family: sans-serif;
+  background: var(--medium);
 }
 
 button {
@@ -31,5 +32,6 @@ input {
   padding: 5px;
   border: 1px solid #3f4739;
   border-radius: 4px;
+  text-align: center;
 }
 `

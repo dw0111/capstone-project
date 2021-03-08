@@ -3,8 +3,9 @@ import styled from 'styled-components/macro'
 import GlobalStyles from '../GlobalStyles'
 import RideForm from './RideForm/RideForm'
 import { v4 as uuidv4 } from 'uuid'
+import RidesList from './RidesList/RidesList'
 
-function App() {
+export default function App() {
   const [rides, setRides] = useState(getLocal('rides') ?? [])
 
   useEffect(() => {
@@ -15,6 +16,7 @@ function App() {
     <AppStyled>
       <GlobalStyles />
       <RideForm handleSubmit={addRide} />
+      <RidesList rides={rides} />
     </AppStyled>
   )
 
@@ -28,7 +30,6 @@ function App() {
       duration: formElements.duration.value,
     }
     setRides([newRide, ...rides])
-    console.log(rides)
   }
 
   function setLocal(key, data) {
@@ -40,8 +41,6 @@ function App() {
     return JSON.parse(jsonString)
   }
 }
-
-export default App
 
 const AppStyled = styled.div`
   padding: 40px;

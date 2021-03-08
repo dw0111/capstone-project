@@ -3,18 +3,18 @@ import styled from 'styled-components/macro'
 
 export default function RideForm({ handleSubmit }) {
   return (
-    <FormStyled onSubmit={e => handleSubmit(e)}>
+    <FormStyled onSubmit={e => handleSubmit(e)} role="form">
       <LabelStyled>
         Date
-        <input name="date" placeholder="01. Jan 2021"></input>
+        <input type="date" name="date" placeholder="01. Jan 2021" required />
       </LabelStyled>
       <LabelStyled>
         Distance
-        <input name="distance" placeholder=" 42 km"></input>
+        <input name="distance" placeholder=" 42 km" required />
       </LabelStyled>
       <LabelStyled>
         Duration
-        <input name="duration" placeholder="2 h 31 min"></input>
+        <input name="duration" placeholder="2 h 31 min" required />
       </LabelStyled>
       <ButtonStyled>Send it!</ButtonStyled>
     </FormStyled>
