@@ -25,6 +25,6 @@ describe('RideForm', () => {
     userEvent.type(screen.getByLabelText(/distance/i), '43 km')
     userEvent.type(screen.getByLabelText(/duration/i), '2 hrs 45 min')
     userEvent.click(screen.queryByRole('button'))
-    expect(window.localStorage.setItem).toHaveBeenCalledTimes(1)
+    expect(global.Storage.prototype.setItem).toHaveBeenCalledTimes(1)
   })
 })

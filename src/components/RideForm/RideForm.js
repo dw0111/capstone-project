@@ -25,6 +25,11 @@ const FormStyled = styled.form`
   display: grid;
   justify-items: center;
   gap: 20px;
+  background: var(--dark);
+  border-radius: 8px;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 0 4px var(--highlight);
 `
 const LabelStyled = styled.label`
   width: 100%;

@@ -32,6 +32,7 @@ input {
   padding: 5px;
   border: 1px solid #3f4739;
   border-radius: 4px;
-  text-align: center;
+  flex-grow: none;
+  width:60%
 }
 `

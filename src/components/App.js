@@ -4,6 +4,8 @@ import GlobalStyles from '../GlobalStyles'
 import RideForm from './RideForm/RideForm'
 import { v4 as uuidv4 } from 'uuid'
 import RidesList from './RidesList/RidesList'
+import setLocal from '../lib/setLocal'
+import getLocal from '../lib/getLocal'
 
 export default function App() {
   const [rides, setRides] = useState(getLocal('rides') ?? [])
@@ -31,17 +33,8 @@ export default function App() {
     }
     setRides([newRide, ...rides])
   }
-
-  function setLocal(key, data) {
-    localStorage.setItem(key, JSON.stringify(data))
-  }
-
-  function getLocal(key) {
-    const jsonString = localStorage.getItem(key)
-    return JSON.parse(jsonString)
-  }
 }
 
 const AppStyled = styled.div`
-  padding: 40px;
+  padding: 30px;
 `
