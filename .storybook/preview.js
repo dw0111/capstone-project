@@ -6,11 +6,11 @@ export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
 }
 
-function withGlobalStyles(storyFn) {
+function withGlobalStyles(Story) {
   return (
     <>
       <GlobalStyles />
-      {storyFn()}
+      {Story}
     </>
   );
 }
