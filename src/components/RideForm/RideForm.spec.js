@@ -12,31 +12,15 @@ describe('RideForm', () => {
     expect(screen.queryByRole('button')).toBeInTheDocument()
   })
 
-  Object.defineProperty(window, 'localStorage', {
-    value: {
-      setItem: jest.fn(() => null),
-    },
-    writable: true,
-  })
-
   it('contains only required fields', () => {
-    render(<RideForm handleSubmit={window.localStorage.setItem} />)
+    render(<RideForm handleSubmit={global.Storage.prototype.setItem} />)
     expect(screen.getByLabelText(/date/i)).toBeRequired()
     expect(screen.getByLabelText(/distance/i)).toBeRequired()
     expect(screen.getByLabelText(/duration/i)).toBeRequired()
   })
 
-  Object.defineProperty(window, 'localStorage', {
-    value: {
-      setItem: jest.fn(() => null),
-    },
-    writable: true,
-  })
-
   it('saves the input to local storage on submit', () => {
-    render(
-      <RideForm handleSubmit={ride => window.localStorage.setItem(ride)} />
-    )
+    render(<RideForm handleSubmit={global.Storage.prototype.setItem} />)
     userEvent.type(screen.getByLabelText(/date/i), '01. Jan 2021')
     userEvent.type(screen.getByLabelText(/distance/i), '43 km')
     userEvent.type(screen.getByLabelText(/duration/i), '2 hrs 45 min')
