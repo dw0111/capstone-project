@@ -1,43 +1,24 @@
 import styled from 'styled-components'
+import RidesListEntry from '../RidesListEntry/RidesListEntry'
 
 export default function RidesList({ rides }) {
   return (
-    <DlStyled role="list">
+    <OlStyled role="list">
       {rides.map((ride, index) => (
-        <div key={ride.id}>
-          <DtStyled>{`Ride ${rides.length - index}`}</DtStyled>
-          <DdStyled>
-            <span>Date: </span>
-            <span>{ride.date}</span>
-          </DdStyled>
-          <DdStyled>
-            <span>Distance: </span>
-            <span>{ride.distance}</span>
-          </DdStyled>
-          <DdStyled>
-            <span>Duration: </span>
-            <span>{ride.duration}</span>
-          </DdStyled>
-        </div>
+        <LiStyled key={ride.id}>
+          <RidesListEntry ride={ride} index={rides.length - index} />
+        </LiStyled>
       ))}
-    </DlStyled>
+    </OlStyled>
   )
 }
 
-const DlStyled = styled.dl`
+const OlStyled = styled.ol`
   display: grid;
   gap: 10px;
-  margin-top: 30px;
+  padding: 30px 0;
 `
 
-const DtStyled = styled.dt`
-  color: var(--dark);
-  font-size: 115%;
-  margin-top: 15px;
-`
-
-const DdStyled = styled.dd`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
+const LiStyled = styled.li`
+  list-style-type: none;
 `

@@ -19,17 +19,11 @@ describe('RideForm', () => {
     writable: true,
   })
 
-  it('does not allow to submit unless all fields are filled in', () => {
+  it('contains only required fields', () => {
     render(<RideForm handleSubmit={window.localStorage.setItem} />)
-    userEvent.type(screen.getByLabelText(/date/i), '01. Jan 2021')
-    userEvent.click(screen.queryByRole('button'))
-    expect(window.localStorage.setItem).not.toHaveBeenCalled()
-    userEvent.type(screen.getByLabelText(/distance/i), '43 km')
-    userEvent.click(screen.queryByRole('button'))
-    expect(window.localStorage.setItem).not.toHaveBeenCalled()
-    userEvent.type(screen.getByLabelText(/duration/i), '2 hrs 45 min')
-    userEvent.click(screen.queryByRole('button'))
-    expect(window.localStorage.setItem).toHaveBeenCalled()
+    expect(screen.getByLabelText(/date/i)).toBeRequired()
+    expect(screen.getByLabelText(/distance/i)).toBeRequired()
+    expect(screen.getByLabelText(/duration/i)).toBeRequired()
   })
 
   Object.defineProperty(window, 'localStorage', {
@@ -47,6 +41,6 @@ describe('RideForm', () => {
     userEvent.type(screen.getByLabelText(/distance/i), '43 km')
     userEvent.type(screen.getByLabelText(/duration/i), '2 hrs 45 min')
     userEvent.click(screen.queryByRole('button'))
-    expect(window.localStorage.setItem).toHaveReturned()
+    expect(window.localStorage.setItem).toHaveBeenCalledTimes(1)
   })
 })

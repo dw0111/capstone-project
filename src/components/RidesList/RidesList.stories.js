@@ -7,6 +7,16 @@ export default {
   component: RidesList,
 }
 
-const Template = () => <RidesList />
+const Template = () => (
+  <RidesList
+    rides={[
+      {
+        date: '01. Jan 2021',
+        distance: '43 km',
+        duration: '2 hrs 45 min',
+      },
+    ]}
+  />
+)
 
 export const RidesListStory = Template.bind({})

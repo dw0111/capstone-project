@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import RidesList from './RidesList'
 
 describe('RidesList', () => {
-  it('renders a list', () => {
+  it('renders a list from a given array', () => {
     render(
       <RidesList
         rides={[
