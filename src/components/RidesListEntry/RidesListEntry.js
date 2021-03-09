@@ -23,6 +23,7 @@ const DivStyled = styled.div`
   border-radius: 8px;
   padding: 20px;
   color: white;
+  box-shadow: 0 0 4px var(--highlight);
 `
 const H2Styled = styled.h2`
   grid-column: 1 / span 2;

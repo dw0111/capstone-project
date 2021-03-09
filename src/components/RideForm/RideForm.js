@@ -35,4 +35,5 @@ const LabelStyled = styled.label`
 const ButtonStyled = styled.button`
   width: 100%;
   font-size: 120%;
+  box-shadow: 0 0 4px var(--highlight);
 `
