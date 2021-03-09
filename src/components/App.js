@@ -17,19 +17,17 @@ export default function App() {
   return (
     <AppStyled>
       <GlobalStyles />
-      <RideForm handleSubmit={addRide} />
+      <RideForm onSubmit={addRide} />
       <RidesList rides={rides} />
     </AppStyled>
   )
 
-  function addRide(e) {
-    e.preventDefault()
-    const formElements = e.target.elements
+  function addRide({ date, distance, duration }) {
     const newRide = {
       id: uuidv4(),
-      date: formElements.date.value,
-      distance: formElements.distance.value,
-      duration: formElements.duration.value,
+      date,
+      distance,
+      duration,
     }
     setRides([newRide, ...rides])
   }

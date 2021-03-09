@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-export default function RideForm({ handleSubmit }) {
+export default function RideForm({ onSubmit }) {
   return (
-    <FormStyled onSubmit={e => handleSubmit(e)} role="form">
+    <FormStyled aria-label="add ride" onSubmit={e => handleSubmit(e)}>
       <LabelStyled>
         Date
         <input type="date" name="date" placeholder="01. Jan 2021" required />
@@ -19,6 +19,18 @@ export default function RideForm({ handleSubmit }) {
       <ButtonStyled>Send it!</ButtonStyled>
     </FormStyled>
   )
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const formElements = e.target.elements
+    const rideData = {
+      date: formElements.date.value,
+      distance: formElements.distance.value,
+      duration: formElements.duration.value,
+    }
+
+    onSubmit(rideData)
+  }
 }
 
 const FormStyled = styled.form`

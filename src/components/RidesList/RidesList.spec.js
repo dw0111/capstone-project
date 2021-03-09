@@ -7,6 +7,7 @@ describe('RidesList', () => {
       <RidesList
         rides={[
           {
+            id: '1',
             date: '01. Jan 2021',
             distance: '43 km',
             duration: '2 hrs 45 min',

@@ -3,17 +3,17 @@ import RidesListEntry from '../RidesListEntry/RidesListEntry'
 
 export default function RidesList({ rides }) {
   return (
-    <ListStyled role="list">
+    <List aria-label="past rides">
       {rides.map((ride, index) => (
         <ListItem key={ride.id}>
           <RidesListEntry ride={ride} index={rides.length - index} />
         </ListItem>
       ))}
-    </ListStyled>
+    </List>
   )
 }
 
-const ListStyled = styled.ol`
+const List = styled.ol`
   display: grid;
   gap: 10px;
   padding: 30px 0;
