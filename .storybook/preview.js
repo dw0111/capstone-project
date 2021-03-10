@@ -10,7 +10,7 @@ function withGlobalStyles(Story) {
   return (
     <>
       <GlobalStyles />
-      {Story}
+      {Story()}
     </>
   );
 }
