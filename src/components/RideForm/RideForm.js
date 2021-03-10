@@ -6,15 +6,52 @@ export default function RideForm({ onSubmit }) {
     <FormStyled aria-label="add ride" onSubmit={e => handleSubmit(e)}>
       <LabelStyled>
         Date
-        <input type="date" name="date" placeholder="01. Jan 2021" required />
+        <input type="date" name="date" required />
       </LabelStyled>
       <LabelStyled>
         Distance
-        <input name="distance" placeholder=" 42 km" required />
+        <NumberInput>
+          <NoSpinnersDistance
+            name="distance"
+            type="number"
+            min="0"
+            step="0.01"
+            defaultValue="00"
+          />
+          km
+        </NumberInput>
       </LabelStyled>
       <LabelStyled>
         Duration
-        <input name="duration" placeholder="2 h 31 min" required />
+        <NumberInput>
+          <NoSpinners
+            name="hours"
+            type="number"
+            min="0"
+            step="1"
+            defaultValue="00"
+          />
+          h
+          <NoSpinners
+            name="minutes"
+            type="number"
+            max="59"
+            min="0"
+            step="1"
+            defaultValue="00"
+            required
+          />
+          m
+          <NoSpinners
+            name="seconds"
+            type="number"
+            max="59"
+            min="0"
+            step="1"
+            defaultValue="00"
+          />
+          s
+        </NumberInput>
       </LabelStyled>
       <ButtonStyled>Send it!</ButtonStyled>
     </FormStyled>
@@ -25,26 +62,15 @@ export default function RideForm({ onSubmit }) {
     const formElements = e.target.elements
     const rideData = {
       date: formElements.date.value,
-      distance: sanitizeDistance(formElements.distance.value),
-      duration: sanitizeDuration(formElements.duration.value),
+      distance: Number(formElements.distance.value),
+      duration: {
+        hours: Number(formElements.hours.value),
+        minutes: Number(formElements.minutes.value),
+        seconds: Number(formElements.seconds.value),
+      },
     }
 
     onSubmit(rideData)
-  }
-
-  function sanitizeDistance(distance) {
-    const sanitized = distance.replaceAll(',', '.').replaceAll(/[^0-9.]/g, '')
-    return Number(sanitized)
-  }
-
-  function sanitizeDuration(duration) {
-    /*  Pseudo:
-        split at any non digit character
-        map to replace any non digit characters with empty string
-        join with ":"
-
-    */
-    console.log('Duration sanitation not yet completed')
   }
 }
 
@@ -68,4 +94,43 @@ const ButtonStyled = styled.button`
   width: 100%;
   font-size: 120%;
   box-shadow: 0 0 4px var(--highlight);
+`
+const NumberInput = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px 0 3px;
+  background: white;
+  border: 1px solid #3f4739;
+  border-radius: 4px;
+  flex-grow: fit-content;
+  width: 60%;
+  color: #acacac;
+  font-size: 60%;
+`
+
+const NoSpinners = styled.input`
+  &:-webkit-outer-spin-button,
+  &:-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  -moz-appearance: textfield;
+  border: none;
+  text-align: start;
+  width: 20%;
+`
+
+const NoSpinnersDistance = styled.input`
+  &:-webkit-outer-spin-button,
+  &:-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  -moz-appearance: textfield;
+  border: none;
+  text-align: start;
+  width: 80%;
 `

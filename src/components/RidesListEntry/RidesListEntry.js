@@ -5,6 +5,7 @@ import { RideStats } from '../StyleComponents/RideStats'
 
 export default function RidesListEntry({ ride, index }) {
   const { date, distance, duration } = ride
+  const { hours, minutes, seconds } = duration
   return (
     <Container>
       <H2Styled>Ride {index}</H2Styled>
@@ -14,7 +15,11 @@ export default function RidesListEntry({ ride, index }) {
         <dt>Distance: </dt>
         <Data>{distance} km</Data>
         <dt>Duration: </dt>
-        <Data>{duration}</Data>
+        <Data>{`${hours
+          .toString()
+          .padStart(2, '0')} : ${minutes
+          .toString()
+          .padStart(2, '0')} : ${seconds.toString().padStart(2, '0')}`}</Data>
       </RideStats>
     </Container>
   )
