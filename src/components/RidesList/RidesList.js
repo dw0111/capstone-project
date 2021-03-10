@@ -16,7 +16,8 @@ export default function RidesList({ rides }) {
 const List = styled.ol`
   display: grid;
   gap: 10px;
-  padding: 30px 0;
+  margin: 30px 0;
+  padding: 0;
 `
 
 const ListItem = styled.li`
