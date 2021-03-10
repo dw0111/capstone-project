@@ -17,7 +17,7 @@ body {
   margin: 0;
   font-size: 112.5%;
   font-family: sans-serif;
-  background: var(--medium);
+  background: var(--light);
 }
 
 button {
