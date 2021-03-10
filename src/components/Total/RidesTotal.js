@@ -8,10 +8,16 @@ export default function RidesTotal({ rides }) {
     <ContPlusMargin>
       <Heading2>Total</Heading2>
       <RideStats>
-        <dt>Km ridden:</dt>
-        <Data>86 km</Data>
+        <dt>Distance:</dt>
+        <Data>
+          {`
+          ${rides
+            .map(ride => ride.distance)
+            .reduce((acc, curVal) => acc + curVal, 0)}
+           km`}
+        </Data>
         <dt>Hrs in the saddle:</dt>
-        <Data>7 h 29 min</Data>
+        <time dateTime="PT7H29M0S">7 h 29 min</time>
       </RideStats>
     </ContPlusMargin>
   )

@@ -25,11 +25,26 @@ export default function RideForm({ onSubmit }) {
     const formElements = e.target.elements
     const rideData = {
       date: formElements.date.value,
-      distance: formElements.distance.value,
-      duration: formElements.duration.value,
+      distance: sanitizeDistance(formElements.distance.value),
+      duration: sanitizeDuration(formElements.duration.value),
     }
 
     onSubmit(rideData)
+  }
+
+  function sanitizeDistance(distance) {
+    const sanitized = distance.replaceAll(',', '.').replaceAll(/[^0-9.]/g, '')
+    return Number(sanitized)
+  }
+
+  function sanitizeDuration(duration) {
+    /*  Pseudo:
+        split at any non digit character
+        map to replace any non digit characters with empty string
+        join with ":"
+
+    */
+    console.log('Duration sanitation not yet completed')
   }
 }
 

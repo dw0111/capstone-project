@@ -12,7 +12,7 @@ export default function RidesListEntry({ ride, index }) {
         <dt>Date: </dt>
         <Data>{date}</Data>
         <dt>Distance: </dt>
-        <Data>{distance}</Data>
+        <Data>{distance} km</Data>
         <dt>Duration: </dt>
         <Data>{duration}</Data>
       </RideStats>
