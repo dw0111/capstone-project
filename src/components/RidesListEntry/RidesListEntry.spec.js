@@ -6,9 +6,9 @@ describe('RidesListEntry', () => {
     render(
       <RidesListEntry
         ride={{
-          date: '01. Jan 2021',
-          distance: '43 km',
-          duration: '2 hrs 45 min',
+          date: '2021-01-01',
+          distance: 43,
+          duration: { hours: 3, minutes: 54, seconds: 2 },
         }}
       />
     )

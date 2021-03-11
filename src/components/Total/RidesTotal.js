@@ -12,17 +12,15 @@ export default function RidesTotal({ rides }) {
       <Heading2>Total</Heading2>
       <RideStats>
         <dt>Distance:</dt>
-        <Data>
-          {`
-          ${rides
-            .map(ride => ride.distance)
-            .reduce((acc, curVal) => acc + curVal, 0)}
-           km`}
+        <Data aria-label="total-distance">
+          {`${rides.reduce((acc, curVal) => acc + curVal.distance, 0)} km`}
         </Data>
         <dt>Hrs in the saddle:</dt>
-        <time dateTime={datetimeTotal}>{`${hours
-          .toString()
-          .padStart(2, 0)} : ${minutes
+        <time
+          dateTime={datetimeTotal}
+          role="definition"
+          aria-label="total-duration"
+        >{`${hours.toString().padStart(2, 0)} : ${minutes
           .toString()
           .padStart(2, 0)} : ${seconds.toString().padStart(2, 0)}`}</time>
       </RideStats>

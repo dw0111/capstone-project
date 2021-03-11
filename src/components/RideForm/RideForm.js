@@ -13,10 +13,12 @@ export default function RideForm({ onSubmit }) {
         <NumberInput>
           <NoSpinnersDistance
             name="distance"
+            aria-label="distance"
             type="number"
             min="0"
             step="0.01"
             defaultValue="00"
+            required
           />
           km
         </NumberInput>
@@ -26,6 +28,7 @@ export default function RideForm({ onSubmit }) {
         <NumberInput>
           <NoSpinners
             name="hours"
+            aria-label="hours"
             type="number"
             min="0"
             step="1"
@@ -34,6 +37,7 @@ export default function RideForm({ onSubmit }) {
           h
           <NoSpinners
             name="minutes"
+            aria-label="minutes"
             type="number"
             max="59"
             min="0"
@@ -44,6 +48,7 @@ export default function RideForm({ onSubmit }) {
           m
           <NoSpinners
             name="seconds"
+            aria-label="seconds"
             type="number"
             max="59"
             min="0"
