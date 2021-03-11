@@ -11,14 +11,16 @@ const Template = () => (
   <RidesTotal
     rides={[
       {
-        date: '01. Jan 2021',
-        distance: '43 km',
-        duration: '2 hrs 45 min',
+        id: '1',
+        date: '2021-01-01',
+        distance: 43,
+        duration: { hours: 3, minutes: 54, seconds: 2 },
       },
       {
-        date: '01. Jan 2021',
-        distance: '43 km',
-        duration: '2 hrs 45 min',
+        id: '2',
+        date: '2021-01-02',
+        distance: 43,
+        duration: { hours: 3, minutes: 54, seconds: 2 },
       },
     ]}
   />

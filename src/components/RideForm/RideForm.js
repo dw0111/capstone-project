@@ -11,53 +11,56 @@ export default function RideForm({ onSubmit }) {
       <LabelStyled>
         Distance
         <NumberInput>
-          <NoSpinnersDistance
+          <NoSpinners
             name="distance"
             aria-label="distance"
             type="number"
             min="0"
             step="0.01"
-            defaultValue="00"
+            placeholder="00"
+            align="start"
             required
           />
           km
         </NumberInput>
       </LabelStyled>
-      <LabelStyled>
-        Duration
+      <DurationFieldset>
+        <DurationLegend>Duration</DurationLegend>
         <NumberInput>
-          <NoSpinners
-            name="hours"
-            aria-label="hours"
-            type="number"
-            min="0"
-            step="1"
-            defaultValue="00"
-          />
-          h
-          <NoSpinners
-            name="minutes"
-            aria-label="minutes"
-            type="number"
-            max="59"
-            min="0"
-            step="1"
-            defaultValue="00"
-            required
-          />
-          m
-          <NoSpinners
-            name="seconds"
-            aria-label="seconds"
-            type="number"
-            max="59"
-            min="0"
-            step="1"
-            defaultValue="00"
-          />
-          s
+          <label>
+            <NoSpinners
+              name="hours"
+              type="number"
+              min="0"
+              step="1"
+              placeholder="00"
+            />
+            h
+          </label>
+          <label>
+            <NoSpinners
+              name="minutes"
+              type="number"
+              min="0"
+              step="1"
+              placeholder="00"
+              required
+            />
+            m
+          </label>
+          <label>
+            <NoSpinners
+              name="seconds"
+              type="number"
+              max="59"
+              min="0"
+              step="1"
+              placeholder="00"
+            />
+            s
+          </label>
         </NumberInput>
-      </LabelStyled>
+      </DurationFieldset>
       <ButtonStyled>Send it!</ButtonStyled>
     </FormStyled>
   )
@@ -93,6 +96,21 @@ const LabelStyled = styled.label`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+`
+const DurationFieldset = styled.fieldset`
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+`
+
+const DurationLegend = styled.legend`
+  float: left;
 `
 
 const ButtonStyled = styled.button`
@@ -123,19 +141,6 @@ const NoSpinners = styled.input`
 
   -moz-appearance: textfield;
   border: none;
-  text-align: start;
-  width: 20%;
-`
-
-const NoSpinnersDistance = styled.input`
-  &:-webkit-outer-spin-button,
-  &:-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  -moz-appearance: textfield;
-  border: none;
-  text-align: start;
   width: 80%;
+  text-align: ${props => props.align || 'end'};
 `
