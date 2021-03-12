@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import { Container } from '../StyleComponents/Container'
 
 export default function RideForm({ onSubmit }) {
   return (
-    <FormStyled aria-label="add ride" onSubmit={e => handleSubmit(e)}>
-      <LabelStyled>
+    <Form as="form" aria-label="add ride" onSubmit={e => handleSubmit(e)}>
+      <Label>
         Date
         <input type="date" name="date" required />
-      </LabelStyled>
-      <LabelStyled>
+      </Label>
+      <Label>
         Distance
         <NumberInput>
           <NoSpinners
@@ -23,7 +24,7 @@ export default function RideForm({ onSubmit }) {
           />
           km
         </NumberInput>
-      </LabelStyled>
+      </Label>
       <DurationFieldset>
         <DurationLegend>Duration</DurationLegend>
         <NumberInput>
@@ -61,8 +62,8 @@ export default function RideForm({ onSubmit }) {
           </label>
         </NumberInput>
       </DurationFieldset>
-      <ButtonStyled>Send it!</ButtonStyled>
-    </FormStyled>
+      <Button>Send it!</Button>
+    </Form>
   )
 
   function handleSubmit(e) {
@@ -72,9 +73,9 @@ export default function RideForm({ onSubmit }) {
       date: formElements.date.value,
       distance: Number(formElements.distance.value),
       duration: {
-        hours: Number(formElements.hours.value),
+        hours: Number(formElements.hours.value) ?? 0,
         minutes: Number(formElements.minutes.value),
-        seconds: Number(formElements.seconds.value),
+        seconds: Number(formElements.seconds.value) ?? 0,
       },
     }
 
@@ -82,17 +83,12 @@ export default function RideForm({ onSubmit }) {
   }
 }
 
-const FormStyled = styled.form`
+const Form = styled(Container)`
   display: grid;
   justify-items: center;
   gap: 20px;
-  background: var(--dark);
-  border-radius: 8px;
-  padding: 20px;
-  color: white;
-  box-shadow: 0 0 4px var(--highlight);
 `
-const LabelStyled = styled.label`
+const Label = styled.label`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -113,7 +109,7 @@ const DurationLegend = styled.legend`
   float: left;
 `
 
-const ButtonStyled = styled.button`
+const Button = styled.button`
   width: 100%;
   font-size: 120%;
   box-shadow: 0 0 4px var(--highlight);
