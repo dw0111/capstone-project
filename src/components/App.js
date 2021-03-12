@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 import RidesList from './RidesList/RidesList'
 import setLocal from '../lib/setLocal'
 import getLocal from '../lib/getLocal'
+import RidesTotal from './Total/RidesTotal'
 
 export default function App() {
   const [rides, setRides] = useState(getLocal('rides') ?? [])
@@ -18,6 +19,7 @@ export default function App() {
     <AppStyled>
       <GlobalStyles />
       <RideForm onSubmit={addRide} />
+      <RidesTotal rides={rides} />
       <RidesList rides={rides} />
     </AppStyled>
   )

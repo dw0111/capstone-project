@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react'
-import RidesList from './RidesList'
+import Total from './RidesTotal'
 
-describe('RidesList', () => {
-  it('renders a list from a given array', () => {
+describe('Total', () => {
+  it('shows the total amount of km and hrs ridden', () => {
     render(
-      <RidesList
+      <Total
         rides={[
           {
             id: '1',
@@ -21,6 +21,11 @@ describe('RidesList', () => {
         ]}
       />
     )
-    expect(screen.queryByRole('list')).toBeInTheDocument()
+    expect(
+      screen.getByRole('definition', { name: 'total-distance' }).textContent
+    ).toEqual('86 km')
+    expect(
+      screen.getByRole('definition', { name: 'total-duration' }).textContent
+    ).toEqual('07 : 48 : 04')
   })
 })

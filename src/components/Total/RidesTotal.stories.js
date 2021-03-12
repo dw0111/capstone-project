@@ -1,14 +1,14 @@
 import React from 'react'
-import RidesList from './RidesList'
+import RidesTotal from './RidesTotal'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: 'RidesList',
-  component: RidesList,
+  title: 'RidesTotal',
+  component: RidesTotal,
 }
 
 const Template = () => (
-  <RidesList
+  <RidesTotal
     rides={[
       {
         id: '1',
@@ -26,4 +26,4 @@ const Template = () => (
   />
 )
 
-export const RidesListStory = Template.bind({})
+export const RidesTotalStory = Template.bind({})

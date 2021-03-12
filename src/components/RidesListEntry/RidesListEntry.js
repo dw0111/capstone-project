@@ -1,39 +1,33 @@
 import styled from 'styled-components'
+import { Container } from '../StyleComponents/Container'
+import { Heading2 } from '../StyleComponents/Heading2'
+import { RideStats } from '../StyleComponents/RideStats'
 
 export default function RidesListEntry({ ride, index }) {
   const { date, distance, duration } = ride
+  const { hours, minutes, seconds } = duration
   return (
-    <Entry>
+    <Container>
       <H2Styled>Ride {index}</H2Styled>
-      <Stats>
+      <RideStats>
         <dt>Date: </dt>
-        <dd>{date}</dd>
+        <Data>{date}</Data>
         <dt>Distance: </dt>
-        <dd>{distance}</dd>
+        <Data>{distance} km</Data>
         <dt>Duration: </dt>
-        <dd>{duration}</dd>
-      </Stats>
-    </Entry>
+        <Data>{`${hours
+          .toString()
+          .padStart(2, '0')} : ${minutes
+          .toString()
+          .padStart(2, '0')} : ${seconds.toString().padStart(2, '0')}`}</Data>
+      </RideStats>
+    </Container>
   )
 }
 
-const Entry = styled.div`
-  background: var(--dark);
-  border-radius: 8px;
-  padding: 20px;
-  color: white;
-  box-shadow: 0 0 4px var(--highlight);
-`
-
-const Stats = styled.dl`
-  display: grid;
-  gap: 15px;
-  grid-template-columns: 1fr 1fr;
-`
-
-const H2Styled = styled.h2`
+const H2Styled = styled(Heading2)`
   grid-column: 1 / span 2;
-  color: var(--highlight);
-  margin: 10px 0;
-  font-weight: normal;
+`
+const Data = styled.dd`
+  margin: 0;
 `
